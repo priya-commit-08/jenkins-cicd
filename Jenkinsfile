@@ -6,13 +6,13 @@ pipeline {
     stages { 
         stage('SCM Checkout') {
             steps{
-            git ''
+            git 'https://github.com/priya-commit-08/jenkins-cicd.git'
             }
         }
 
         stage('Build docker image') {
             steps {  
-                sh 'docker build -t rama25krishna/nodeapp_1:$BUILD_NUMBER .'
+                sh 'docker build -t priya-commit-08/nodeapp:$BUILD_NUMBER .'
             }
         }
         stage('login to dockerhub') {
@@ -22,20 +22,15 @@ pipeline {
         }
         stage('push image') {
             steps{
-                sh 'docker push rama25krishna/nodeapp_1:$BUILD_NUMBER'
+                sh 'docker push priya-commit-08/nodeapp:$BUILD_NUMBER'
             }
         }
         
         stage('Run Container') {
             steps {
-                    sh "docker run -d --name node_app_$BUILD_NUMBER rama25krishna/nodeapp_1:$BUILD_NUMBER"
+                    sh "docker run -d --name node_app_$BUILD_NUMBER priya-commit-08/nodeapp:$BUILD_NUMBER"
             }
         }   
-
-                stage('Run Second Job') {
-            steps {
-                    build job: 'sib_job_2', wait: true
-            }
         }  
 }
 post {
