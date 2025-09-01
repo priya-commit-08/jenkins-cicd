@@ -12,7 +12,7 @@ pipeline {
 
         stage('Build docker image') {
             steps {  
-                sh 'docker build -t rama25krishna/nodeapp_1:$BUILD_NUMBER .'
+                sh 'docker build -t priya-commit-08/nodeapp:$BUILD_NUMBER .'
             }
         }
         
