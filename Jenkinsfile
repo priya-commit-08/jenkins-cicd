@@ -10,9 +10,9 @@ pipeline {
             }
         }
 
-        stage('push image') {
-            steps{
-                sh 'docker push priya-commit-08/nodeapp:$BUILD_NUMBER'
+        stage('Build docker image') {
+            steps {  
+                sh 'docker build -t rama25krishna/nodeapp_1:$BUILD_NUMBER .'
             }
         }
         
