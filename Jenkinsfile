@@ -31,7 +31,6 @@ pipeline {
                     sh "docker run -d --name node_app_$BUILD_NUMBER priya-commit-08/nodeapp:$BUILD_NUMBER"
             }
         }   
-        }  
 }
 post {
         always {
