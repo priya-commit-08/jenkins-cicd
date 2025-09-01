@@ -1,0 +1,13 @@
+{
+ "name": "jenkins-cicd-sim-node",
+ "version": "1.0.0",
+ "description": "Sample Node.js app for Jenkins CI/CD with simulated deployment",
+ "main": "app.js",
+ "scripts": {
+   "test": "echo \"No tests yet (simulated)\" && exit 0",
+   "build": "echo \"Building (simulated)\""
+ },
+ "dependencies": {
+   "express": "^4.19.2"
+ }
+}
