@@ -12,10 +12,19 @@ pipeline {
 
         stage('Build docker image') {
             steps {  
-                sh 'docker build -t priya-commit-08/nodeapp:$BUILD_NUMBER .'
+                sh 'docker build -t priyacommit08/nodeapp:$BUILD_NUMBER .'
             }
         }
-        
+        stage('login to dockerhub') {
+            steps{
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+            }
+        }
+        stage('push image') {
+            steps{
+                sh 'docker push priyacommit08/nodeapp:$BUILD_NUMBER'
+            }
+        }
         stage('Run Container') {
             steps {
                     sh "docker run -d --name node_app_$BUILD_NUMBER priya-commit-08/nodeapp:$BUILD_NUMBER"
