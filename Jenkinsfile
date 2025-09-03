@@ -15,9 +15,15 @@ pipeline {
                 sh 'docker build -t priyacommit08/nodeapp:$BUILD_NUMBER .'
             }
         }
-        stage('login to dockerhub') {
-            steps{
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+            stage('Docker Login with Chosen Account') {
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: '4c43fcc2-beaf-4182-a3f9-9e19cc1e8de9',
+                    usernameVariable: 'DOCKER_USER',
+                    passwordVariable: 'DOCKER_PASS'
+                )]) {
+                    sh 'docker login -u $DOCKER_USER -p $DOCKER_PASS'
+                }
             }
         }
         stage('push image') {
